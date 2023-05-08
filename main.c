@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-    char *args[] = { "/bin/ls", "-la", NULL };
+    char *args[] = { "usr/bin/cat", NULL, NULL };
     char *env[] = { NULL };
     int ret;
 
