@@ -4,11 +4,7 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-<<<<<<< HEAD
-    char *args[] = { "usr/bin/cat", NULL, NULL };
-=======
     char *args[] = { "/usr/bin/cat", NULL, NULL };
->>>>>>> 03335d05eab813ee5f06091105813143e4e8e859
     char *env[] = { NULL };
     int ret;
     int fd;
