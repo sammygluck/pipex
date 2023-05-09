@@ -14,30 +14,34 @@ int main() {
 
     // fork first child
     pid = fork();
-    if (pid == -1) {
+    if (pid == -1) 
+    {
         perror("fork");
-        return 1;
-    } else if (pid == 0) {
+        return (1);
+    } else if (pid == 0) 
+    {
         // child 1 writes to pipe
         close(pipe_fd[0]); // close read end
         dup2(pipe_fd[1], STDOUT_FILENO); // redirect stdout to pipe write end
-        execlp("ls", "ls", "-l", NULL); // execute "ls -l" command
-        perror("execlp");
-        return 1;
+        execve("/usr/bin/ls", "-l", NULL); // execute "ls -l" command
+        perror("execve");
+        return (1);
     }
 
     // fork second child
     pid = fork();
-    if (pid == -1) {
+    if (pid == -1) 
+    {
         perror("fork");
-        return 1;
-    } else if (pid == 0) {
+        return (1);
+    } 
+    else if (pid == 0) {
         // child 2 reads from pipe
         close(pipe_fd[1]); // close write end
         dup2(pipe_fd[0], STDIN_FILENO); // redirect stdin to pipe read end
-        execlp("wc", "wc", "-l", NULL); // execute "wc -l" command
-        perror("execlp");
-        return 1;
+        execve("/usr/bin/wc", "-l", NULL); // execute "wc -l" command
+        perror("execlve");
+        return (1);
     }
 
     // parent process
