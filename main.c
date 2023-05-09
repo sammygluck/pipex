@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 
 int main(int argc, char *argv[]) {
     char *args[] = { "/usr/bin/ls", NULL, NULL };
