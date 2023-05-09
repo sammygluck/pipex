@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
             return (1);
         }
         //execute command
-        ret = execve(args[0], args, env)
+        ret = execve(args[0], args, env);
         if (ret == -1)
         {
             perror("execve");
@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
     {
         //fork a second time
         pid2 = fork();
-        if (pi2 == -1)
+        if (pid2 == -1)
         {
             perror("fork");
             return (1);
