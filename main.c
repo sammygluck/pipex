@@ -52,6 +52,8 @@ int main(int argc, char *argv[]) {
     //child 1
     else if (pid == 0)
     {
+        //close unused end of pipe
+        close(pipe_fd[0]);
         // redirect stdin to fd
         if (dup2(fd, STDIN_FILENO) == -1)
         {
@@ -85,6 +87,8 @@ int main(int argc, char *argv[]) {
         // child 2
         else if (pid2 == 0)
         {
+            //close unused end of pipe
+            close(pipe_fd[1]);
             //redirect stdin to pipe_fd
             if (dup2(pipe_fd[0], STDIN_FILENO) == -1)
             {
@@ -115,9 +119,6 @@ int main(int argc, char *argv[]) {
         }
         
     }
-    
-	
-
     return 0;
 }
 
