@@ -5,7 +5,7 @@
 #include <sys/wait.h>
 
 int main(int argc, char *argv[]) {
-    char *args[] = { "/usr/bin/ls", NULL, NULL };
+    char *args[] = { "/usr/bin/cat", NULL, NULL };
     char *args2[] = {"/usr/bin/wc", "-l", NULL };
     char *env[] = { NULL };
     int ret;
