@@ -9,5 +9,6 @@
 # include "../libft/libft.h"
 
 char  **parsed_envp(char *envp[]);
+int execute(char *command, char *arguments, char **paths);
 
 #endif

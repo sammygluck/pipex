@@ -1,10 +1,10 @@
 #include "pipex.h"
 
 int main(int argc, char *argv[], char **envp) {
-    char *args[] = { "/usr/bin/cat", NULL, NULL };
-    char *args2[] = {"/usr/bin/wc", "-l", NULL };
+    char *args[] = { "cat", NULL, NULL };
+    char *args2[] = {"wc", "-l", NULL };
     char *env[] = { NULL };
-    char **envi;
+    char **paths;
     int ret;
     int ret2;
     int fd;
@@ -18,10 +18,8 @@ int main(int argc, char *argv[], char **envp) {
     {
         printf("%s\n", argv[0]);
     }
-    //check if parsed envp is working
-    envi = parsed_envp(envp);
-    free (envi);
-
+    // get array of parsed envp
+    paths = parsed_envp(envp);
     //FILES
     //open the input file
     fd = open("test.txt", O_RDONLY);
@@ -73,7 +71,7 @@ int main(int argc, char *argv[], char **envp) {
             return (1);
         }
         //execute command
-        ret = execve(args[0], args, env);
+        ret = execute(args[0], args, paths);
         if (ret == -1)
         {
             perror("execve");
@@ -108,7 +106,7 @@ int main(int argc, char *argv[], char **envp) {
                 return (1);
             }
             //execute command
-            ret2 = execve(args2[0], args2, env);
+            ret2 = execute(args2[0], args2, paths);
             if (ret2 == -1)
             {
                 perror("execve");
