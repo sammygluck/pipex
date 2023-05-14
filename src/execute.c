@@ -12,7 +12,7 @@ int execute(char *command, char **arguments, char **paths)
         if (access(full_path, X_OK) == 0)
         {
             fprintf(stderr, "%s\n", full_path);
-            ret = execve(full_path, arguments, NULL);
+            execve(full_path, arguments, NULL);
         }
        
         i++;
