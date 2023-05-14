@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-int execute(char *command, const char **arguments, const char **paths)
+int execute(char *command, char **arguments, char **paths)
 {
     int i;
     int ret;
