@@ -3,7 +3,7 @@
 int main(int argc, char *argv[], char **envp) {
     char *args[] = { "cat", NULL, NULL };
     char *args2[] = {"wc", "-l", NULL };
-    char *env[] = { NULL };
+    //char *env[] = { NULL };
     char **paths;
     int ret;
     int ret2;
