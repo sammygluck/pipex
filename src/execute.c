@@ -10,10 +10,12 @@ int execute(char *command, char **arguments, char **paths)
     while (paths[i])
     {
         full_path = ft_strjoin(paths[i], command);
-	    fprintf(stderr, "%s\n", full_path);
-        ret = execve(full_path, arguments, NULL);
-        if (ret == -1)
-                return (-1);
+        if (access(full_path, X_OK) == 0)
+        {
+            fprintf(stderr, "%s\n", full_path);
+            ret = execve(full_path, arguments, NULL);
+        }
+       
         i++;
     }
     
