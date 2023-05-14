@@ -7,11 +7,10 @@ int execute(char *command, char **arguments, char **paths)
     char *full_path;
 
     i = 0;
-    fprintf(stderr, "activated");
     while (paths[i])
     {
         full_path = ft_strjoin(paths[i], command);
-	    printf("%s\n", full_path);
+	    fprintf(stderr, "%s\n", full_path);
         ret = execve(full_path, arguments, NULL);
         if (ret == -1)
                 return (-1);
