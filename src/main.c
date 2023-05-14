@@ -4,6 +4,7 @@ int main(int argc, char *argv[], char **envp) {
     char *args[] = { "/usr/bin/cat", NULL, NULL };
     char *args2[] = {"/usr/bin/wc", "-l", NULL };
     char *env[] = { NULL };
+    char **envi;
     int ret;
     int ret2;
     int fd;
@@ -18,7 +19,8 @@ int main(int argc, char *argv[], char **envp) {
         printf("%s\n", argv[0]);
     }
     //check if parsed envp is working
-    parsed_envp(envp);
+    envi = parsed_envp(envp);
+    free (envi);
 
     //FILES
     //open the input file

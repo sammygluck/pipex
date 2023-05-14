@@ -22,9 +22,12 @@ char  **parsed_envp(char *envp[])
     }
     //what happens when the path variable isn't there?
     paths = ft_split(envp[i], ':');
+    paths[0] = ft_strtrim(paths[0], "PATH=");
     j = 0;
     while(paths[j])
     {
+        if (j == 0)
+
         printf("%s\n", paths[j]);
         j++;
     }
