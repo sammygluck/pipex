@@ -3,7 +3,6 @@
 int execute(char *command, char **arguments, char **paths)
 {
     int i;
-    int ret;
     char *full_path;
 
     i = 0;
