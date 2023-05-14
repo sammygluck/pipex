@@ -24,7 +24,7 @@ char  **parsed_envp(char *envp[])
     paths = ft_split(envp[i], ':');
     while(paths[i])
     {
-        printf(paths[j])
+        printf(paths[j]);
         j++;
     }
     return (paths);
