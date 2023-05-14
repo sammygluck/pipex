@@ -8,4 +8,6 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 
+char  **parsed_envp(char *envp[]);
+
 #endif

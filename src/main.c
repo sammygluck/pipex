@@ -1,9 +1,10 @@
 #include "pipex.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[], char **envp) {
     char *args[] = { "/usr/bin/cat", NULL, NULL };
     char *args2[] = {"/usr/bin/wc", "-l", NULL };
     char *env[] = { NULL };
+    char **envi;
     int ret;
     int ret2;
     int fd;
@@ -11,6 +12,10 @@ int main(int argc, char *argv[]) {
     int pipe_fd[2];
     pid_t pid;
     pid_t pid2;
+
+
+    //check if parsed envp is working
+    envi = parsed_envp(envp);
 
     //FILES
     //open the input file
