@@ -12,7 +12,11 @@ int main(int argc, char *argv[], char **envp) {
     pid_t pid;
     pid_t pid2;
 
-
+    // so as not to get initial errors
+    if (argc == 1)
+    {
+        printf("%s\n", argv[0]);
+    }
     //check if parsed envp is working
     parsed_envp(envp);
 
