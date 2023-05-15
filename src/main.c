@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[], char **envp) {
     char *args[] = { "cat", NULL, NULL };
-    char *args2[] = {"wc", "-l", NULL };
+    char *args2[] = {"wc", "-x", NULL };
     //char *env[] = { NULL };
     char **paths;
     int ret;
