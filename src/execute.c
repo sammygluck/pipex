@@ -11,7 +11,7 @@ int execute(char *command, char **arguments, char **paths)
         full_path = ft_strjoin(paths[i], command);
         if (access(full_path, X_OK) == 0)
         {
-            fprintf(stderr, "%s\n", full_path);
+            //fprintf(stderr, "%s\n", full_path);
             execve(full_path, arguments, NULL);
         }
        

@@ -32,3 +32,4 @@ char  **parsed_envp(char *envp[])
     }
     return (paths);
 }
+
