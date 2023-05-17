@@ -5,6 +5,6 @@ char **arg_parser(char *arguments)
 {
     char **parsed_arguments;
 
-    parsed_arguments = ft_split(arguments, " ");
+    parsed_arguments = ft_split(arguments, ' ');
     return (parsed_arguments);
 }
