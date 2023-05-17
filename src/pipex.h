@@ -10,5 +10,6 @@
 
 char  **parsed_envp(char *envp[]);
 int execute(char *command, char **arguments, char **paths);
+char **arg_parser(char *arguments);
 
 #endif

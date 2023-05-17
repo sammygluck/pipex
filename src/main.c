@@ -1,8 +1,8 @@
 #include "pipex.h"
 
 int main(int argc, char *argv[], char **envp) {
-    char *args[] = { "cat", NULL, NULL };
-    char *args2[] = {"wc", "-hello", NULL };
+    char *args[] = arg_parser(argv[2]);
+    char *args2[] = arg_parser(arg[3]);
     //char *env[] = { NULL };
     char **paths;
     int ret;
