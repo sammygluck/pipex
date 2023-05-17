@@ -1,18 +1,18 @@
 #include "pipex.h"
 
 int main(int argc, char *argv[], char **envp) {
-    char **args = arg_parser(argv[2]);
-    char **args2 = arg_parser(argv[3]);
-    char *first_file = argv[1];
-    char *second_file = argv[4];
-    char **paths;
+    char **args = arg_parser(argv[2]); //
+    char **args2 = arg_parser(argv[3]); //
+    char *first_file = argv[1]; //
+    char *second_file = argv[4]; //
+    char **paths; //
     int ret;
     int ret2;
-    int fd;
-    int fd2;
-    int pipe_fd[2];
-    pid_t pid;
-    pid_t pid2;
+    int fd; //
+    int fd2; //
+    int pipe_fd[2]; //
+    pid_t pid; //
+    pid_t pid2; //
 
     // so as not to get initial errors
     if (argc == 1)
