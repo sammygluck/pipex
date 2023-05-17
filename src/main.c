@@ -2,7 +2,7 @@
 
 int main(int argc, char *argv[], char **envp) {
     char *args[] = arg_parser(argv[2]);
-    char *args2[] = arg_parser(arg[3]);
+    char *args2[] = arg_parser(argv[3]);
     //char *env[] = { NULL };
     char **paths;
     int ret;
