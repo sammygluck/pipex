@@ -3,7 +3,8 @@
 int main(int argc, char *argv[], char **envp) {
     char **args = arg_parser(argv[2]);
     char **args2 = arg_parser(argv[3]);
-    //char *env[] = { NULL };
+    char *first_file = argv[1];
+    char *second_file = argv[4];
     char **paths;
     int ret;
     int ret2;
@@ -22,7 +23,7 @@ int main(int argc, char *argv[], char **envp) {
     paths = parsed_envp(envp);
     //FILES
     //open the input file
-    fd = open("test.txt", O_RDONLY);
+    fd = open(first_file, O_RDONLY);
     if (fd == -1)
     {
 	    perror("open");
@@ -30,7 +31,7 @@ int main(int argc, char *argv[], char **envp) {
     }
 
     //open the output file
-    fd2 = open("output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    fd2 = open(second_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
     if (fd2 == -1)
     {
 	    perror("write_open");
