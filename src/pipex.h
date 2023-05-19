@@ -21,8 +21,11 @@ typedef struct s_pipex {
     pid_t pid2;
 }    t_pipex;
 
-char  **parsed_envp(char *envp[]);
 int execute(char *command, char **arguments, char **paths);
+t_pipex *var_init(char **argv, char **envp);
+char  **parsed_envp(char *envp[]);
 char **arg_parser(char *arguments);
+void    error_exit(char *msg);
+int     fork_handler(t_pipex *variables);
 
 #endif

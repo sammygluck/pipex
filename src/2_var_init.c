@@ -6,23 +6,23 @@
 // 4. pipe fds
 // 5. pids
 
-void    set_first_argument(t_pipex *variables, char *argument)
+static void    set_first_argument(t_pipex *variables, char *argument)
 {
     variables->args = arg_parser(argument);
 }
 
-void    set_second_argument(t_pipex *variables, char *argument)
+static void    set_second_argument(t_pipex *variables, char *argument)
 {
     variables->args2 = arg_parser(argument);
 }
 
-void    set_file_names(t_pipex *variables, char *file, char *file2)
+static void    set_file_names(t_pipex *variables, char *file, char *file2)
 {
     variables->first_file = file;
     variables->second_file = file2;
 }
 
-void    set_file_fds(t_pipex *variables)
+static void    set_file_fds(t_pipex *variables)
 {
     variables->fd = open(variables->first_file, O_RDONLY);
     if (variables->fd == -1)
@@ -40,7 +40,7 @@ void    set_file_fds(t_pipex *variables)
 }
 
 
-void    set_pipe_fds(t_pipex *variables)
+static void    set_pipe_fds(t_pipex *variables)
 {
     if (pipe(variables->pipe_fd) == -1)
     {
