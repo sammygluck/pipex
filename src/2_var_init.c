@@ -31,8 +31,8 @@ static void    set_file_fds(t_pipex *variables)
         exit(-1);
     }
 
-    variables->fd = open(variables->second_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
-    if (variables->fd == -1)
+    variables->fd2 = open(variables->second_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    if (variables->fd2 == -1)
     {
         perror("write_open");
         exit(-1);
