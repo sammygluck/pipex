@@ -11,7 +11,7 @@ static void handle_first_child(t_pipex *variables)
         error_exit("execute");
 }
 
-static void handle_second_chile(t_pipex *variables)
+static void handle_second_child(t_pipex *variables)
 {
     close(variables->pipe_fd[1]);
     if(dup2(variables->pipe_fd[0], STDIN_FILENO) == -1)
@@ -22,7 +22,7 @@ static void handle_second_chile(t_pipex *variables)
         error_exit("execute");
 }
 
-static void parent_handler(t_pipex *variables)
+static void handle_parent(t_pipex *variables)
 {
     close(variables->pipe_fd[0]);
     close(variables->pipe_fd[1]);
