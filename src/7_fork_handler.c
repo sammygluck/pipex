@@ -2,7 +2,7 @@
 
 static void handle_first_child(t_pipex *variables)
 {
-    close(variables->pipe_fd[0])
+    close(variables->pipe_fd[0]);
     if (dup2(variables->fd, STDIN_FILENO) == -1)
         error_exit("dup2");
     if (dup2(variables->pipe_fd[1], STDOUT_FILENO) == -1)
@@ -36,14 +36,14 @@ int     fork_handler(t_pipex *variables)
     if (variables->pid == -1)
         error_exit("fork");
     else if (variables->pid == 0)
-        handle_first_child(variables, 0, variables->fd, variables->args);
+        handle_first_child(variables);
     else
     {
         variables->pid2 = fork();
         if (variables->pid2 == -1)
             error_exit("fork");
         else if (variables->pid2 == 0)
-            handle_second_child(variables, 1, variables->fd2, variables->args2);
+            handle_second_child(variables);
         else
             handle_parent(variables);
     }    
