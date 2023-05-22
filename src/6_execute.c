@@ -23,5 +23,6 @@ int execute(char *command, char **arguments, char **paths)
             free(full_path);
         i++;
     }
+    perror("pipex: command not found: %s\n", command);
     return (-1);
 }
