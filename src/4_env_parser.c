@@ -1,35 +1,55 @@
 #include "pipex.h"
 
-//function that parses the environment variables to return an array of paths that can be used for the command provided
-//1. the function will take the whole environment variables
-//2. it will check for the path variable
-//3. it will seperate the following lines by the ':' delimiter
-//4. it will return the split string array
-
-char  **parsed_envp(char *envp[])
+static char **parse_path_variable(char *env_variable)
 {
-    int i;
-    int j;
+    int     j;
     char **paths;
+    char *tmp;
 
-    i = 0;
-    //what happens with no path variables
-    while (envp[i])
-    {
-        if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-            break;
-        i++;
-    }
-    //what happens when the path variable isn't there?
-    paths = ft_split(envp[i], ':');
+    paths = ft_split(env_variable, ':');
+    if (!paths)
+        return (NULL);
+    tmp = paths[0];
     paths[0] = ft_strtrim(paths[0], "PATH=");
+    free(tmp);
+    if (!paths[0])
+        return (NULL);
     j = 0;
-    while(paths[j])
+    while (paths[j])
     {
+        tmp = paths[j];
         paths[j] = ft_strjoin(paths[j], "/");
-        //printf("%s\n", paths[j]);
+        free(tmp);
+        if (!paths[j])
+            return (NULL);
         j++;
     }
     return (paths);
+}
+
+static char *find_path_variable(char **envp)
+{
+    int i;
+
+    i = 0;
+    while(envp[i])
+    {
+        if(ft_strncmp(envp[i], "PATH=", 5) == 0)
+            return (envp[i]);
+        i++;
+    }
+    return (NULL);
+}
+
+char **parsed_envp(char *envp[])
+{
+    char *path_variable;
+    char **parsed_path_variable;
+    
+    path_variable = find_path_variable(envp);
+    if (!path_variable)
+        return (NULL);
+    parsed_path_variable = parse_path_variable(path_variable);
+    return (parsed_path_variable);    
 }
 
