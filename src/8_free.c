@@ -10,6 +10,7 @@ void free_pipex(t_pipex *variables)
     //must I close the two fds?
     //free paths
     free_string_array(variables->paths);
+    free(variables);
 }
 
 void free_string_array(char **array) 
