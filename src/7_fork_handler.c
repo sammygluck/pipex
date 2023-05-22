@@ -22,46 +22,38 @@ static void handle_second_child(t_pipex *variables)
         error_exit(variables, "execute");
 }
 
-// static void handle_parent(t_pipex *variables)
-// {
-//     close(variables->pipe_fd[0]);
-//     close(variables->pipe_fd[1]);
-//     wait(NULL);
-//     wait(NULL);
-// }
-
-//code to remove (i.e. debugging code)
 static void handle_parent(t_pipex *variables)
 {
-    int status1, status2;
-    
     close(variables->pipe_fd[0]);
     close(variables->pipe_fd[1]);
-
-    waitpid(variables->pid, &status1, 0);
-    if (WIFEXITED(status1)) 
-    {
-        printf("First child process with pid %d exited with status %d\n", variables->pid, WEXITSTATUS(status1));
-    } 
-    else 
-    {
-        printf("First child process with pid %d did not terminate normally\n", variables->pid);
-    }
-    
-    waitpid(variables->pid2, &status2, 0);
-    if (WIFEXITED(status2)) 
-    {
-        printf("Second child process with pid %d exited with status %d\n", variables->pid2, WEXITSTATUS(status2));
-    } 
-    else 
-    {
-        printf("Second child process with pid %d did not terminate normally\n", variables->pid2);
-    }
+    wait(NULL);
+    wait(NULL);
 }
 
 
-void     fork_handler(t_pipex *variables)
+// void     fork_handler(t_pipex *variables)
+// {
+//     variables->pid = fork();
+//     if (variables->pid == -1)
+//         error_exit(variables, "fork");
+//     else if (variables->pid == 0)
+//         handle_first_child(variables);
+//     else
+//     {
+//         variables->pid2 = fork();
+//         if (variables->pid2 == -1)
+//             error_exit(variables, "fork");
+//         else if (variables->pid2 == 0)
+//             handle_second_child(variables);
+//         else
+//             handle_parent(variables);
+//     }    
+// }
+
+//debug code
+int     fork_handler(t_pipex *variables)
 {
+    int status;
     variables->pid = fork();
     if (variables->pid == -1)
         error_exit(variables, "fork");
@@ -69,12 +61,22 @@ void     fork_handler(t_pipex *variables)
         handle_first_child(variables);
     else
     {
-        variables->pid2 = fork();
-        if (variables->pid2 == -1)
-            error_exit(variables, "fork");
-        else if (variables->pid2 == 0)
-            handle_second_child(variables);
+        waitpid(variables->pid, &status, 0);
+        if(WIFEXITED(status) && WEXITSTATUS(status) == 0) // If the child process exited normally and its exit status is 0
+        {
+            variables->pid2 = fork();
+            if (variables->pid2 == -1)
+                error_exit(variables, "fork");
+            else if (variables->pid2 == 0)
+                handle_second_child(variables);
+            else
+                handle_parent(variables);
+        }
         else
-            handle_parent(variables);
+        {
+            fprintf(stderr, "The first child process failed, aborting...\n");
+            exit(1);
+        }
     }    
+    return (0);
 }
