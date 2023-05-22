@@ -1,11 +1,5 @@
 #include "pipex.h"
 
-void    error_exit(char *msg)
-{
-    perror(msg);
-    exit(1);
-}
-
 int main(int argc, char **argv, char **envp)
 {
     t_pipex *variables;
