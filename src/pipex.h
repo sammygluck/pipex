@@ -28,5 +28,6 @@ char **arg_parser(char *arguments);
 void    error_exit(t_pipex *variables, char *msg);
 int     fork_handler(t_pipex *variables);
 void free_string_array(char **array);
+void free_pipex(t_pipex *variables);
 
 #endif
