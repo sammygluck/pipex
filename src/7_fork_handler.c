@@ -22,13 +22,36 @@ static void handle_second_child(t_pipex *variables)
         error_exit(variables, "execute");
 }
 
+// static void handle_parent(t_pipex *variables)
+// {
+//     close(variables->pipe_fd[0]);
+//     close(variables->pipe_fd[1]);
+//     wait(NULL);
+//     wait(NULL);
+// }
+
 static void handle_parent(t_pipex *variables)
 {
+    int status;
+    pid_t terminated_pid;
+    
     close(variables->pipe_fd[0]);
     close(variables->pipe_fd[1]);
-    wait(NULL);
-    wait(NULL);
+    
+    for (int i = 0; i < 2; i++)
+    {
+        terminated_pid = wait(&status);
+        if (WIFEXITED(status)) 
+        {
+            printf("Child process with pid %d exited with status %d\n", terminated_pid, WEXITSTATUS(status));
+        } 
+        else 
+        {
+            printf("Child process with pid %d did not terminate normally\n", terminated_pid);
+        }
+    }
 }
+
 
 void     fork_handler(t_pipex *variables)
 {
