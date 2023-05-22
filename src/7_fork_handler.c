@@ -30,6 +30,7 @@ static void handle_second_child(t_pipex *variables)
 //     wait(NULL);
 // }
 
+//code to remove (i.e. debugging code)
 static void handle_parent(t_pipex *variables)
 {
     int status1, status2;

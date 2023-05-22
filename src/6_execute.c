@@ -12,13 +12,22 @@ int execute(char *command, char **arguments, char **paths)
         full_path = ft_strjoin(paths[i], command);
         if (!full_path)
             return (-1);
+        //debug code
         if (access(full_path, X_OK) == 0)
         {
+            fprintf(stderr, "Executing command: %s\n", full_path);
             ret = execve(full_path, arguments, NULL);
             free (full_path);
             if (ret == -1)
                 return (-1);
         }
+        // if (access(full_path, X_OK) == 0)
+        // {
+        //     ret = execve(full_path, arguments, NULL);
+        //     free (full_path);
+        //     if (ret == -1)
+        //         return (-1);
+        // }
         else
             free(full_path);
         i++;
