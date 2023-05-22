@@ -32,23 +32,29 @@ static void handle_second_child(t_pipex *variables)
 
 static void handle_parent(t_pipex *variables)
 {
-    int status;
-    pid_t terminated_pid;
+    int status1, status2;
     
     close(variables->pipe_fd[0]);
     close(variables->pipe_fd[1]);
-    
-    for (int i = 0; i < 2; i++)
+
+    waitpid(variables->pid, &status1, 0);
+    if (WIFEXITED(status1)) 
     {
-        terminated_pid = wait(&status);
-        if (WIFEXITED(status)) 
-        {
-            printf("Child process with pid %d exited with status %d\n", terminated_pid, WEXITSTATUS(status));
-        } 
-        else 
-        {
-            printf("Child process with pid %d did not terminate normally\n", terminated_pid);
-        }
+        printf("First child process with pid %d exited with status %d\n", variables->pid, WEXITSTATUS(status1));
+    } 
+    else 
+    {
+        printf("First child process with pid %d did not terminate normally\n", variables->pid);
+    }
+    
+    waitpid(variables->pid2, &status2, 0);
+    if (WIFEXITED(status2)) 
+    {
+        printf("Second child process with pid %d exited with status %d\n", variables->pid2, WEXITSTATUS(status2));
+    } 
+    else 
+    {
+        printf("Second child process with pid %d did not terminate normally\n", variables->pid2);
     }
 }
 
