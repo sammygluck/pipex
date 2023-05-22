@@ -51,7 +51,7 @@ static void handle_parent(t_pipex *variables)
 // }
 
 //debug code
-int     fork_handler(t_pipex *variables)
+void     fork_handler(t_pipex *variables)
 {
     int status;
     variables->pid = fork();
@@ -78,5 +78,4 @@ int     fork_handler(t_pipex *variables)
             exit(1);
         }
     }    
-    return (0);
 }
