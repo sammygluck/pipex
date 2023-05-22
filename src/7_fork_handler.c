@@ -30,7 +30,7 @@ static void handle_parent(t_pipex *variables)
     wait(NULL);
 }
 
-int     fork_handler(t_pipex *variables)
+void     fork_handler(t_pipex *variables)
 {
     variables->pid = fork();
     if (variables->pid == -1)
@@ -47,5 +47,4 @@ int     fork_handler(t_pipex *variables)
         else
             handle_parent(variables);
     }    
-    return (0);
 }

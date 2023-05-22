@@ -40,6 +40,8 @@ t_pipex *var_init(char **argv, char **envp)
         perror("malloc");
         exit(1);
     }
+    variables->fd = -1;
+    variables->fd2 = -1;
     set_arguments(variables, argv[2], argv[3]);
     set_file_names(variables, argv[1], argv[4]);
     set_fds(variables);
