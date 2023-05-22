@@ -29,7 +29,7 @@ void free_string_array(char **array)
     }
 }
 
-void    error_exit(t_pipex variables, char *msg)
+void    error_exit(t_pipex *variables, char *msg)
 {
     perror(msg);
     free_pipex(variables);
