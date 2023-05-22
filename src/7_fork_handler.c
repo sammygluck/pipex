@@ -31,29 +31,8 @@ static void handle_parent(t_pipex *variables)
 }
 
 
-// void     fork_handler(t_pipex *variables)
-// {
-//     variables->pid = fork();
-//     if (variables->pid == -1)
-//         error_exit(variables, "fork");
-//     else if (variables->pid == 0)
-//         handle_first_child(variables);
-//     else
-//     {
-//         variables->pid2 = fork();
-//         if (variables->pid2 == -1)
-//             error_exit(variables, "fork");
-//         else if (variables->pid2 == 0)
-//             handle_second_child(variables);
-//         else
-//             handle_parent(variables);
-//     }    
-// }
-
-//debug code
 void     fork_handler(t_pipex *variables)
 {
-    int status;
     variables->pid = fork();
     if (variables->pid == -1)
         error_exit(variables, "fork");
@@ -61,21 +40,13 @@ void     fork_handler(t_pipex *variables)
         handle_first_child(variables);
     else
     {
-        waitpid(variables->pid, &status, 0);
-        if(WIFEXITED(status) && WEXITSTATUS(status) == 0) // If the child process exited normally and its exit status is 0
-        {
-            variables->pid2 = fork();
-            if (variables->pid2 == -1)
-                error_exit(variables, "fork");
-            else if (variables->pid2 == 0)
-                handle_second_child(variables);
-            else
-                handle_parent(variables);
-        }
+        variables->pid2 = fork();
+        if (variables->pid2 == -1)
+            error_exit(variables, "fork");
+        else if (variables->pid2 == 0)
+            handle_second_child(variables);
         else
-        {
-            fprintf(stderr, "The first child process failed, aborting...\n");
-            exit(1);
-        }
+            handle_parent(variables);
     }    
 }
+
