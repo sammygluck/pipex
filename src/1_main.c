@@ -3,7 +3,6 @@
 int main(int argc, char **argv, char **envp)
 {
     t_pipex *variables;
-    int ret;
 
     if (argc != 5)
     {
@@ -13,5 +12,5 @@ int main(int argc, char **argv, char **envp)
     variables = var_init(argv, envp);
     fork_handler(variables);
     free_pipex(variables);
-    return (ret);
+    return (0);
 }
