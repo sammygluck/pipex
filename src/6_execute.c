@@ -24,6 +24,6 @@ int execute(char *command, char **arguments, char **paths)
         i++;
     }
     ft_putstr_fd("pipex: command not found: ", 2);
-    ft_putend_fd(command, 2);
+    ft_putendl_fd(command, 2);
     return (-1);
 }
