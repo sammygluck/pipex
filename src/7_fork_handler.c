@@ -57,7 +57,7 @@ static void handle_second_child(t_pipex *variables)
     }
 }
 
-
+//end debug
 
 
 

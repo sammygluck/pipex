@@ -12,5 +12,6 @@ int main(int argc, char **argv, char **envp)
     variables = var_init(argv, envp);
     fork_handler(variables);
     free_pipex(variables);
+    system("leaks pipex");
     return (0);
 }
