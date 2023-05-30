@@ -28,15 +28,15 @@ static void    set_fds(t_pipex *variables)
     //what if there is not enough permissions/the file doesn't exist
     if (variables->fd == -1)
     {
-        ft_putstr_fd("pipex: ", 2);
-        ft_putendl_fd(strerror(errno), 2);
+        //ft_putstr_fd("pipex: ", 2);
+        //ft_putendl_fd(strerror(errno), 2);
         error_exit(variables, "read_open");    
     }
     variables->fd2 = open(variables->second_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
     if (variables->fd2 == -1)
     {
-        ft_putstr_fd("pipex ", 2);
-        ft_putendl_fd(strerror(errno), 2);
+        //ft_putstr_fd("pipex ", 2);
+        //ft_putendl_fd(strerror(errno), 2);
         error_exit(variables, "write_open");
     }
     if (pipe(variables->pipe_fd) == -1)
