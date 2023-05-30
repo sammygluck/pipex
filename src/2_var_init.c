@@ -30,18 +30,18 @@ static void    set_fds(t_pipex *variables)
     {
         //ft_putstr_fd("pipex: ", 2);
         //ft_putendl_fd(strerror(errno), 2);
-        custom_error_exit(variables, variables->first_file);  
+        error_exit(variables, variables->first_file);  
     }
     variables->fd2 = open(variables->second_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
     if (variables->fd2 == -1)
     {
         //ft_putstr_fd("pipex ", 2);
         //ft_putendl_fd(strerror(errno), 2);
-        custom_error_exit(variables, variables->second_file);
+        error_exit(variables, variables->second_file);
     }
     if (pipe(variables->pipe_fd) == -1)
     {
-       custom_error_exit(variables, "pipe_fd");
+       error_exit(variables, "pipe_fd");
     }
 }
 

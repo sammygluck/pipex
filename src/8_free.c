@@ -22,18 +22,18 @@ void free_string_array(char **array)
     }
 }
 
-void    error_exit(t_pipex *variables, char *msg)
-{
-    perror(msg);
-    if(variables->fd > 0)
-        close(variables->fd);
-    if(variables->fd2 > 0)
-        close(variables->fd2);
-    free_pipex(variables);
-    exit(1);
-}
+// void    error_exit(t_pipex *variables, char *msg)
+// {
+//     perror(msg);
+//     if(variables->fd > 0)
+//         close(variables->fd);
+//     if(variables->fd2 > 0)
+//         close(variables->fd2);
+//     free_pipex(variables);
+//     exit(1);
+// }
 
-void    custom_error_exit(t_pipex *variables, char *file)
+void    error_exit(t_pipex *variables, char *file)
 {
     ft_putstr_fd("pipex: ", 2);
     ft_putstr_fd(file, 2);
