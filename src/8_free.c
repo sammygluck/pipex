@@ -37,6 +37,7 @@ void    custom_error_exit(t_pipex *variables, char *file)
 {
     ft_putstr_fd("pipex: ", 2);
     ft_putstr_fd(file, 2);
+    ft_putstr_fd(": ", 2);
     ft_putendl_fd(strerror(errno), 2);
     if(variables->fd > 0)
         close(variables->fd);
