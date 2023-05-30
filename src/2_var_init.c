@@ -9,7 +9,11 @@
 static void    set_arguments(t_pipex *variables, char *first_argument, char *second_argument)
 {
     variables->args = arg_parser(first_argument);
+    if (!variables->args)
+        error_exit(variables, "set first argument");
     variables->args2 = arg_parser(second_argument);
+    if (!variables->args2)
+        error_exit(variables, "set second argument");
 }
 
 static void    set_file_names(t_pipex *variables, char *file, char *file2)
@@ -21,13 +25,26 @@ static void    set_file_names(t_pipex *variables, char *file, char *file2)
 static void    set_fds(t_pipex *variables)
 {
     variables->fd = open(variables->first_file, O_RDONLY);
+    //what if there is not enough permissions/the file doesn't exist
     if (variables->fd == -1)
-        error_exit(variables, "read_open");
+    {
+        ft_putstr_fd("pipex: ", 2);
+        ft_putendl_fd(strerror(errno), 2);
+        error_exit(variables, "read_open");    
+    }
     variables->fd2 = open(variables->second_file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
     if (variables->fd2 == -1)
+    {
+        ft_putstr_fd("pipex ", 2);
+        ft_putendl_fd(strerror(errno), 2);
         error_exit(variables, "write_open");
+    }
     if (pipe(variables->pipe_fd) == -1)
+    {
+        ft_putstr_fd("pipex: ", 2);
+        ft_putendl_fd(strerror(errno), 2);
         error_exit(variables, "pipe");
+    }
 }
 
 t_pipex *var_init(char **argv, char **envp)
