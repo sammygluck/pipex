@@ -7,6 +7,7 @@ static char **parse_path_variable(char *env_variable)
     char *tmp;
 
     paths = ft_split(env_variable, ':');
+    //error-checking:
     if (!paths)
         return (NULL);
     tmp = paths[0];
