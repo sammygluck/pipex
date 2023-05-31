@@ -95,7 +95,7 @@ static void handle_parent(t_pipex *variables)
     close(variables->pipe_fd[0]);
     close(variables->pipe_fd[1]);
     wait(NULL);
-    wait(NULL);
+    // wait(NULL);
 }
 
 
@@ -108,6 +108,7 @@ void     fork_handler(t_pipex *variables)
         handle_first_child(variables);
     else
     {
+        wait(NULL);
         variables->pid2 = fork();
         if (variables->pid2 == -1)
             error_exit(variables, "fork");
