@@ -62,9 +62,10 @@ static int iterate_paths(char **paths, char *command, char **arguments)
 
 int execute(char *command, char **arguments, char **paths)
 {
-    int permission_issue;
+    // int permission_issue;
     
-    permission_issue = iterate_paths(paths, command, arguments);
+    // permission_issue = 
+    iterate_paths(paths, command, arguments);
     // if (permission_issue == -1)
     //     return (-1);
     // if (permission_issue) 
