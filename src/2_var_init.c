@@ -17,10 +17,10 @@ static void	set_arguments(t_pipex *variables, char *first_argument,
 {
 	variables->args = arg_parser(first_argument);
 	if (!variables->args)
-		error_exit(variables, "set first argument");
+		error_exit(variables, "set first argument", 0);
 	variables->args2 = arg_parser(second_argument);
 	if (!variables->args2)
-		error_exit(variables, "set second argument");
+		error_exit(variables, "set second argument", 0);
 }
 
 static void	set_file_names(t_pipex *variables, char *file, char *file2)
@@ -34,17 +34,17 @@ static void	set_fds(t_pipex *variables)
 	variables->fd = open(variables->first_file, O_RDONLY);
 	if (variables->fd == -1)
 	{
-		error_exit(variables, variables->first_file);
+		error_exit(variables, variables->first_file, 0);
 	}
 	variables->fd2 = open(variables->second_file, O_WRONLY
 			| O_CREAT | O_TRUNC, 0666);
 	if (variables->fd2 == -1)
 	{
-		error_exit(variables, variables->second_file);
+		error_exit(variables, variables->second_file, 0);
 	}
 	if (pipe(variables->pipe_fd) == -1)
 	{
-		error_exit(variables, "pipe_fd");
+		error_exit(variables, "pipe_fd", 0);
 	}
 }
 
@@ -65,6 +65,6 @@ t_pipex	*var_init(char **argv, char **envp)
 	set_fds(variables);
 	variables->paths = parsed_envp(envp);
 	if (!variables->paths)
-		error_exit(variables, "path-setup");
+		error_exit(variables, "path-setup", 0);
 	return (variables);
 }

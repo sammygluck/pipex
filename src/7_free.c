@@ -36,12 +36,15 @@ void	free_string_array(char **array)
 	}
 }
 
-void	error_exit(t_pipex *variables, char *file)
+void	error_exit(t_pipex *variables, char *file, int error_code)
 {
 	ft_putstr_fd("pipex: ", 2);
 	ft_putstr_fd(file, 2);
 	ft_putstr_fd(": ", 2);
-	ft_putendl_fd(strerror(errno), 2);
+	if (error_code > 0)
+		ft_putendl_fd(strerror(error_code), 2);
+	else
+		ft_putendl_fd(strerror(errno), 2);
 	if (variables->fd > 0)
 		close(variables->fd);
 	if (variables->fd2 > 0)
