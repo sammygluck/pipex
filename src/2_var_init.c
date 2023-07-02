@@ -31,21 +31,8 @@ static void	set_file_names(t_pipex *variables, char *file, char *file2)
 
 static void	set_fds(t_pipex *variables)
 {
-	variables->fd = open(variables->first_file, O_RDONLY);
-	if (variables->fd == -1)
-	{
-		error_exit(variables, variables->first_file, 0);
-	}
-	variables->fd2 = open(variables->second_file, O_WRONLY
-			| O_CREAT | O_TRUNC, 0666);
-	if (variables->fd2 == -1)
-	{
-		error_exit(variables, variables->second_file, 0);
-	}
 	if (pipe(variables->pipe_fd) == -1)
-	{
 		error_exit(variables, "pipe_fd", 0);
-	}
 }
 
 t_pipex	*var_init(char **argv, char **envp)

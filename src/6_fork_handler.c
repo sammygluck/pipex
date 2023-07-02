@@ -16,6 +16,9 @@ static void	handle_first_child(t_pipex *variables)
 {
 	int 	ret;
 
+	variables->fd = open(variables->first_file, O_RDONLY);
+	if (variables->fd == -1)
+		error_exit(variables, variables->first_file, 0);
 	close(variables->pipe_fd[0]);
 	if (dup2(variables->fd, STDIN_FILENO) == -1)
 		error_exit(variables, "dup2", 0);
@@ -30,6 +33,10 @@ static void	handle_second_child(t_pipex *variables)
 {
 	int ret;
 
+	variables->fd2 = open(variables->second_file, O_WRONLY
+			| O_CREAT | O_TRUNC, 0666);
+	if (variables->fd2 == -1)
+		error_exit(variables, variables->second_file, 0);
 	close(variables->pipe_fd[1]);
 	if (dup2(variables->pipe_fd[0], STDIN_FILENO) == -1)
 		error_exit(variables, "dup2", 0);
