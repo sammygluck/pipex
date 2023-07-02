@@ -23,7 +23,7 @@ static void	handle_first_child(t_pipex *variables)
 		error_exit(variables, "dup2", 0);
 	ret = execute(variables->args[0], variables->args, variables->paths);
 	printf("%d", ret);
-	//error_exit(variables, variables->args[0], ret);
+	error_exit(variables, variables->args[0], ret);
 }
 
 static void	handle_second_child(t_pipex *variables)
@@ -37,7 +37,7 @@ static void	handle_second_child(t_pipex *variables)
 		error_exit(variables, "dup2", 0);
 	ret = execute(variables->args2[0], variables->args2, variables->paths); 
 	printf("%i", ret);
-	//error_exit(variables, variables->args2[0], ret);
+	error_exit(variables, variables->args2[0], ret);
 }
 
 static void	handle_parent(t_pipex *variables)

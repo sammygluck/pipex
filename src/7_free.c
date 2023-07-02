@@ -38,7 +38,7 @@ void	free_string_array(char **array)
 
 void	error_exit(t_pipex *variables, char *file, int error_code)
 {
-	//ft_putstr_fd("pipex: ", 2);
+	ft_putstr_fd("pipex: ", 2);
 	ft_putstr_fd(file, 2);
 	ft_putstr_fd(": ", 2);
 	if (error_code == 2)
