@@ -22,7 +22,8 @@ static void	handle_first_child(t_pipex *variables)
 	if (dup2(variables->pipe_fd[1], STDOUT_FILENO) == -1)
 		error_exit(variables, "dup2", 0);
 	ret = execute(variables->args[0], variables->args, variables->paths);
-	error_exit(variables, variables->args[0], ret);
+	printf(ret);
+	//error_exit(variables, variables->args[0], ret);
 }
 
 static void	handle_second_child(t_pipex *variables)
