@@ -29,7 +29,7 @@ static void	set_file_names(t_pipex *variables, char *file, char *file2)
 	variables->second_file = file2;
 }
 
-static void	set_fds(t_pipex *variables)
+static void	set_pipe_fds(t_pipex *variables)
 {
 	if (pipe(variables->pipe_fd) == -1)
 		error_exit(variables, "pipe_fd", 0);
@@ -49,7 +49,7 @@ t_pipex	*var_init(char **argv, char **envp)
 	variables->fd2 = -1;
 	set_arguments(variables, argv[2], argv[3]);
 	set_file_names(variables, argv[1], argv[4]);
-	set_fds(variables);
+	set_pipe_fds(variables);
 	variables->paths = parsed_envp(envp);
 	if (!variables->paths)
 		error_exit(variables, "path-setup", 0);

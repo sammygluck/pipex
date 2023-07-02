@@ -18,8 +18,7 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 	{
-		//this needs to change!!!!!!!!!!!!
-		perror("invalid number of arguments");
+		ft_putstr_fd("invalid number of arguments");
 		return (1);
 	}
 	variables = var_init(argv, envp);
