@@ -35,7 +35,7 @@ typedef struct s_pipex {
 	int		pipe_fd[2];
 }	t_pipex;
 
-void	error_exit(t_pipex *variables, char *file, int error_code)
+void	error_exit(t_pipex *variables, char *file, int error_code);
 void	fork_handler(t_pipex *variables);
 void	free_string_array(char **array);
 void	free_pipex(t_pipex *variables);
