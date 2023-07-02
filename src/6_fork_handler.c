@@ -27,6 +27,8 @@ static void	handle_first_child(t_pipex *variables)
 
 static void	handle_second_child(t_pipex *variables)
 {
+	int ret;
+
 	close(variables->pipe_fd[1]);
 	if (dup2(variables->pipe_fd[0], STDIN_FILENO) == -1)
 		error_exit(variables, "dup2", 0);
