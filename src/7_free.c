@@ -42,7 +42,7 @@ void	error_exit(t_pipex *variables, char *file, int error_code)
 	ft_putstr_fd(file, 2);
 	ft_putstr_fd(": ", 2);
 	if (error_code == -2)
-		ft_putstr_fd("command not found")
+		ft_putstr_fd("command not found", 2);
 	if (error_code > 0)
 		ft_putendl_fd(strerror(error_code), 2);
 	else
