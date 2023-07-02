@@ -36,5 +36,5 @@ int execute(char *command, char **arguments, char **paths)
 			return (execve_errno);
 		i++;
 	}
-	return (-2);
+	return (2);
 }
