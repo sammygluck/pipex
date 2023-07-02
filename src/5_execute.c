@@ -19,6 +19,7 @@ int execute(char *command, char **arguments, char **paths)
 	char *full_path;
 
 	i = 0;
+	printf("hello");
 	while (paths[i])
 	{
 		full_path = ft_strjoin(paths[i], command);
