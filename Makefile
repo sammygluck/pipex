@@ -34,7 +34,7 @@ libft_clean:
 
 fclean: clean libft_fclean
 	rm -f $(BINDIR)/$(TARGET)
-	-rmdir $(OBJDIR) $(BINDIR)
+	rm -rf $(OBJDIR) $(BINDIR)
 
 libft_fclean:
 	$(MAKE) -C $(LIBFT_DIR) fclean

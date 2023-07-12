@@ -14,7 +14,7 @@
 
 static void	handle_first_child(t_pipex *variables)
 {
-	int 	ret;
+	int	ret;
 
 	variables->fd = open(variables->first_file, O_RDONLY);
 	if (variables->fd == -1)
@@ -31,7 +31,7 @@ static void	handle_first_child(t_pipex *variables)
 
 static void	handle_second_child(t_pipex *variables)
 {
-	int ret;
+	int	ret;
 
 	variables->fd2 = open(variables->second_file, O_WRONLY
 			| O_CREAT | O_TRUNC, 0666);
@@ -42,7 +42,7 @@ static void	handle_second_child(t_pipex *variables)
 		error_exit(variables, "dup2", 0);
 	if (dup2(variables->fd2, STDOUT_FILENO) == -1)
 		error_exit(variables, "dup2", 0);
-	ret = execute(variables->args2[0], variables->args2, variables->paths); 
+	ret = execute(variables->args2[0], variables->args2, variables->paths);
 	printf("%i", ret);
 	error_exit(variables, variables->args2[0], ret);
 }

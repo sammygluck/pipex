@@ -12,11 +12,11 @@
 
 #include "pipex.h"
 
-int execute(char *command, char **arguments, char **paths)
+int	execute(char *command, char **arguments, char **paths)
 {
-	int	i;
-	int	execve_errno;
-	char *full_path;
+	char	*full_path;
+	int		i;
+	int		execve_errno;
 
 	i = 0;
 	while (paths[i])
@@ -30,7 +30,7 @@ int execute(char *command, char **arguments, char **paths)
 		if (execve_errno == ENOENT)
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		else
 			return (execve_errno);
