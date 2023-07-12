@@ -4,18 +4,18 @@ CFLAGS = -Wall -Wextra -Werror -g
 SRCDIR = src
 OBJDIR = obj
 BINDIR = bin
-TARGET = pipex
+NAME = pipex
 LIBFT_DIR = libft
 
 # Source Files
 SRC = $(wildcard $(SRCDIR)/*.c)
-HDRS = $(TARGET).h
+HDRS = $(NAME).h
 OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 # Targets
-all: $(BINDIR)/$(TARGET)
+all: $(BINDIR)/$(NAME)
 
-$(BINDIR)/$(TARGET): $(OBJ) $(LIBFT_DIR)/libft.a
+$(BINDIR)/$(NAME): $(OBJ) $(LIBFT_DIR)/libft.a
 	@mkdir -p $(BINDIR)
 	$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft
 
